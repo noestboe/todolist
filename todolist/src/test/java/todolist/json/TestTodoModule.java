@@ -2,6 +2,8 @@ package todolist.json;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -11,6 +13,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import todolist.core.TodoItem;
+import todolist.core.TodoList;
 
 public class TestTodoModule {
 
@@ -26,10 +29,20 @@ public class TestTodoModule {
 
     @Test
     public void testSerializer() {
-        TodoItem todoItem = new TodoItem("Brød");
+        TodoList todoList = new TodoList();
+        TodoItem todoItem1 = new TodoItem("Brød");
+        TodoItem todoItem2 = new TodoItem("Melk");
+        TodoItem todoItem3 = new TodoItem("Ost");
+        todoList.addItem(todoItem1);
+        todoList.addItem(todoItem2);
+        todoList.addItem(todoItem3);
+        
         try {
-            //System.out.println(mapper.writeValueAsString(todoItem));
-            assertEquals(todoItemString, mapper.writeValueAsString(todoItem));
+            //assertEquals(todoItemString, mapper.writeValueAsString(todoItem1));
+            for (TodoItem item : todoList) {
+                System.out.println(mapper.writeValueAsString(item));
+            }
+            System.out.println(mapper.writeValueAsString(todoList));
         } catch (JsonProcessingException e){
             fail();
         }

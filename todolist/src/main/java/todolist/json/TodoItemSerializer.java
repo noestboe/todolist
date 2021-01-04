@@ -12,14 +12,10 @@ public class TodoItemSerializer extends JsonSerializer<TodoItem> {
 
     @Override
     public void serialize(TodoItem todoItem, JsonGenerator jsonGenerator, SerializerProvider provider) throws IOException {
-        
         jsonGenerator.writeStartObject();
-        jsonGenerator.writeStringField("Item" , todoItem.getDescription());
+        jsonGenerator.writeStringField("description" , todoItem.getDescription());
+        jsonGenerator.writeBooleanField("checked", todoItem.getChecked());
         jsonGenerator.writeEndObject();
-
     }
-
-    
-
 
 }

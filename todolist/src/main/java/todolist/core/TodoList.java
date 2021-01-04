@@ -5,7 +5,17 @@ import java.util.Iterator;
 import java.util.List;
 
 public class TodoList implements Iterable<TodoItem> {
+
+    private String test = "Bare test";
+    private String test2 = "Test2";
+
+    public String getTest() {
+        return test;
+    }
     
+    public String getTest2(){
+        return test2;
+    }
     List<TodoItem> items = new ArrayList<TodoItem>();
 
     public void addItem(TodoItem todoItem) {
@@ -14,6 +24,10 @@ public class TodoList implements Iterable<TodoItem> {
 
     public void removeItem(TodoItem todoItem) {
         items.remove(todoItem);
+    }
+
+    public boolean isInList(TodoItem todoItem) {
+        return items.contains(todoItem);
     }
 
 
