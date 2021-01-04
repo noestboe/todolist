@@ -1,4 +1,4 @@
-package todolist.core;
+ package todolist.core;
 
 public class TodoItem {
 
