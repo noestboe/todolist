@@ -14,6 +14,8 @@ public class TodoModule extends SimpleModule {
         super(NAME, Version.unknownVersion());
         addSerializer(TodoItem.class, new TodoItemSerializer());
         addSerializer(TodoList.class, new TodoListSerializer());
+        addDeserializer(TodoItem.class, new TodoItemDeserializer());
+        
     }
    
     

@@ -35,6 +35,15 @@ public class TodoList implements Iterable<TodoItem> {
         return items.iterator();
     }
 
+    public List<TodoItem> getAllItems() {
+        List<TodoItem> copyItems = new ArrayList<>();
+        for (TodoItem item : items) {
+            copyItems.add(item);
+        }
+        return copyItems;
+
+    }
+
 
     public List<TodoItem> getCheckedTodoItems() {
         List<TodoItem> copyItems = new ArrayList<>();

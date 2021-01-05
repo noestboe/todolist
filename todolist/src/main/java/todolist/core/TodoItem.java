@@ -10,6 +10,10 @@ public class TodoItem {
         this.checked = false;
     }
 
+    public TodoItem() {
+
+    }
+
     public String getDescription() {
         return description;
     }
@@ -20,6 +24,10 @@ public class TodoItem {
 
     public boolean getChecked(){
         return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 
     public void toggleChecked() {
