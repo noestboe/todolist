@@ -8,12 +8,9 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Iterator;
 
-
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -25,9 +22,9 @@ public class TestTodoModule {
 
     private static ObjectMapper mapper;
 
-    private final static String todoItemString = "{\"description\":\"Brød\",\"checked\":\"false\"}";
-    private final static String todoListString = "{\"items\":[{\"description\":\"Brød\",\"checked\":\"false\"},{\"description\":\"Melk\",\"checked\":\"false\"},{\"description\":\"Ost\",\"checked\":\"false\"}]}";
-    //"{\"items\":[{\"description\":\"Brød\",\"checked\":\"false\"},{\"description\":\"Ost\",\"checked\":\"true\"}]}";
+    private final static String todoItemString = "{\"description\":\"Brød\",\"checked\":false}";
+    private final static String todoListString = "{\"items\":[{\"description\":\"Brød\",\"checked\":false},{\"description\":\"Ost\",\"checked\":true}]}";
+    private final static String todoListStringSerialize = "{\"items\":[{\"description\":\"Brød\",\"checked\":false},{\"description\":\"Melk\",\"checked\":false},{\"description\":\"Ost\",\"checked\":false}]}";
 
     @BeforeAll
     public static void setUp() {
@@ -37,21 +34,15 @@ public class TestTodoModule {
 
     @Test
     public void testDeserializer_forTodoList() {
-        /* TodoList expectedTodolist = new TodoList();
-        TodoItem item1 = new TodoItem("Brød");
-        TodoItem item2 = new TodoItem("Ost");
-        item2.setChecked(true);
-        expectedTodolist.addItem(item1);
-        expectedTodolist.addItem(item2); */
+        
         try {
             TodoList acutalTodoList = mapper.readValue(TestTodoModule.todoListString, TodoList.class);
             Iterator<TodoItem> it = acutalTodoList.iterator();
-            System.out.println(it.next().getDescription());
-            /* assertTrue(it.hasNext());
+            assertTrue(it.hasNext());
             checkTodoItem(it.next(), "Brød", false);
             assertTrue(it.hasNext());
             checkTodoItem(it.next(), "Ost", true);
-            assertFalse(it.hasNext()); */
+            assertFalse(it.hasNext());
         } catch(JsonProcessingException e) {
             fail();
         }
@@ -60,7 +51,6 @@ public class TestTodoModule {
     private void checkTodoItem(TodoItem item, String description, boolean checked) {
         assertEquals(item.getDescription(), description);
         assertEquals(item.getChecked(), checked);
-
     }
 
     @Test
@@ -82,14 +72,12 @@ public class TestTodoModule {
         todoList.addItem(todoItem1);
         todoList.addItem(todoItem2);
         todoList.addItem(todoItem3);
-        
-        try {
-            //assertEquals(todoItemString, mapper.writeValueAsString(todoItem1));
-            for (TodoItem item : todoList) {
-                //System.out.println(mapper.writeValueAsString(item));
 
-            }
-            System.out.println(mapper.writeValueAsString(todoList));
+        try {
+            assertEquals(todoItemString, mapper.writeValueAsString(todoItem1)); 
+            String json = mapper.writeValueAsString(todoList);
+            assertEquals(TestTodoModule.todoListStringSerialize, json);
+            
         } catch (JsonProcessingException e){
             fail();
         }

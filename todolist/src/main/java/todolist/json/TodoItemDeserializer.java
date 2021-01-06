@@ -39,5 +39,4 @@ public class TodoItemDeserializer extends JsonDeserializer<TodoItem> {
         }
         return null;
     }
-
 }

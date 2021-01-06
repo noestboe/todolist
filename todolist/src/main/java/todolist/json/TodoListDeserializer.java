@@ -17,7 +17,7 @@ import todolist.core.TodoList;
 
 public class TodoListDeserializer extends JsonDeserializer<TodoList> {
 
-    private TodoItemDeserializer todoItemDeserializer;
+    private TodoItemDeserializer todoItemDeserializer = new TodoItemDeserializer();
 
     @Override
     public TodoList deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
