@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Button?>
+
+
+<VBox xmlns:fx="http://javafx.com/fxml/1>" fx:controller="todolist.ui.TodoController">
+    <HBox>
+        <Button fx:id="newTodoItemButton" text="New Item"></Button>
+        <Button fx:id="deleteTodoItemButton" text="Delete Item"></Button>
+        <Button fx:id="checkTodoItemButton" text="CheckItem"></Button>
+    </HBox>
+    <ListView fx:id="todoListView">
+
+    </ListView>
+
+
+</VBox>
